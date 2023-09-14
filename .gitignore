@@ -1,1 +1,6 @@
-/datasets
+/datasets/
+/checkpoints/
+models/
+utils/
+__pycache__/
+inference_log/
