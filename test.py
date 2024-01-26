@@ -380,10 +380,17 @@ def main():
                             img.save(os.path.join(result_path, filename[:-4] + "_grid.png"))
 
 
-                            x_sample = resize(x_sample)
-                            x_sample = 255. * rearrange(x_sample.cpu().numpy(), 'c h w -> h w c')
-                            x_sample = Image.fromarray(x_sample.astype(np.uint8))
-                            x_sample.save(os.path.join(result_path, filename[:-4] + "_result.png"))
+                            x_sample_img = resize(x_sample)
+                            x_sample_img = 255. * rearrange(x_sample_img.cpu().numpy(), 'c h w -> h w c')
+                            x_sample_img = Image.fromarray(x_sample_img.astype(np.uint8))
+                            x_sample_img.save(os.path.join(result_path, filename[:-4] + "_result.png"))
+
+
+                            x_sample_img = resize(x_sample)
+                            x_sample_img = 255. * rearrange(x_sample_img.cpu().numpy(), 'c h w -> h w c')
+                            x_sample_img = Image.fromarray(x_sample_img.astype(np.uint8))
+                            os.makedirs(os.path.join(result_path,"results"), exist_ok=True)
+                            x_sample_img.save(os.path.join(result_path, "results", filename[:-4] + ".jpg"))
 
                             # 添加图片到列表
 

@@ -220,12 +220,12 @@ class CPDataset(data.Dataset):
         mask = mask.astype(np.float32)
         inpaint_mask = 1 - self.toTensor(mask)
 
-        warped_cloth_name = os.path.join('cloth-warp' if not self.unpaired else 'unpaired-cloth-warp', c_name[key])
+        warped_cloth_name = os.path.join('cloth-warp' if not self.unpaired else 'unpaired-cloth-warp', self.im_names[index])
 
         warped_cloth = Image.open(osp.join(self.data_path, warped_cloth_name))
         warped_cloth = transforms.Resize(self.crop_size, interpolation=2)(warped_cloth)
         warped_cloth = self.transform(warped_cloth)
-        warped_cloth_mask_name = os.path.join('cloth-warp-mask' if not self.unpaired else 'unpaired-cloth-warp-mask', c_name[key])
+        warped_cloth_mask_name = os.path.join('cloth-warp-mask' if not self.unpaired else 'unpaired-cloth-warp-mask', self.im_names[index])
         warped_cloth_mask = Image.open(osp.join(self.data_path, warped_cloth_mask_name))
         warped_cloth_mask = transforms.Resize(self.crop_size, interpolation=transforms.InterpolationMode.NEAREST) \
             (warped_cloth_mask)
